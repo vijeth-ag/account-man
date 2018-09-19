@@ -1,0 +1,49 @@
+<ion-view>
+    <ion-header-bar align-title="center" class="bar-stable">
+        <h1 class="title">Cauvery Associates</h1>        
+        <div class="buttons no-print">
+            <button class="button icon ion-gear-a" ng-click="gotoSettings()"></button>
+        </div>
+    </ion-header-bar>
+    <div class="bar bar-subheader"> 
+        <button class="button icon ion-printer no-print" ng-click="print()"></button>        
+
+        <h2 class="title no-print" style="text-align: left;margin-left: 55px" ng-click="deleteTodaysData()">Daily Transactions</h2>
+        <div style="position: absolute;right:0">
+            <button class="button button-light no-print" style="font-size: 17px" ng-click="gotoSalary()">Salary</button>
+            <button class="button button-light no-print" style="font-size: 17px" ng-click="gotoExpenses()">Expenses</button>            
+        </div>  
+
+
+    </div>
+    <ion-content class="padding has-header">
+        <br><br>
+        <div class="row">
+            <a class="item ion-ios7-arrow-left" style="margin: 0px;border-width: 0px" ng-click="previousDate()">
+                <i class="icon ion-chevron-left"></i>
+            </a>
+            <button ng-click="openDatePicker()" style="border: 1px solid grey;border-radius: 0%;padding-left: 22px;padding-right: 22px">{{currentSelectedDate | date}}
+            </button>
+            <a class="item ion-ios7-arrow-right" style="margin: 0px;border-width: 0px" ng-click="nextDate()">
+                <i class="icon ion-chevron-right"></i>
+            </a>
+            <p style="float: right;margin-left: 85px;margin-top: 7px">Date:</p>
+        </div>
+        <br>
+               
+        <div class="row no-print" style="margin-bottom: 3px">
+            <button ng-click="addRow()" style="margin: 2px">Add Row</button>
+            <button ng-click="addColoumn()" style="margin: 2px">Add Coloumn</button>            
+        </div>  
+    
+        <div id="dataTable" class="dataTable" style="margin-left: 7px; margin-bottom: 10px"> </div>
+    </ion-content>
+    <div class="bar bar-footer row no-print" style="padding: 0;margin: 0">
+        <div class="col col-50" style="padding: 0;margin: 1px">
+            <button class="button button-dark button-full" ng-click="cancel()" style="margin: 2px">Cancel</button>
+        </div>
+        <div class="col" style="padding: 0;margin: 1px">
+            <button class="button button-dark button-full" ng-click="save()" style="margin: 2px">Save</button>
+        </div>
+    </div>
+</ion-view>

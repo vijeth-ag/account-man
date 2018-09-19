@@ -1,0 +1,70 @@
+<ion-view>
+    <ion-header-bar align-title="center" class="bar-stable">
+        <h1 class="title">Cauvery Associates</h1>
+        <div class="buttons">
+            <button class="button icon ion-gear-a" ng-click="gotoSettings()"></button>
+        </div>        
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+        <h2 class="title no-print" style="text-align: left" ng-click="deleteThisMonthsData()">Salary</h2>
+        <div style="position: absolute;right:0">
+            <button class="button button-light no-print" style="font-size: 17px" ng-click="gotoTransactions()">Daily Transactions</button>
+            <button class="button button-light no-print" style="font-size: 17px" ng-click="gotoExpenses()">Expenses</button>
+        </div>
+    </div>
+    <ion-content class="padding has-header has-subheader ">
+
+        <div class="row">
+            <a class="item ion-ios7-arrow-left" style="margin: 0px;border-width: 0px" ng-click="previousMonth()">
+                <i class="icon ion-chevron-left"></i>
+            </a>
+            <button ng-click="openDatePicker()" style="border: 1px solid grey;border-radius: 0%;padding-left: 22px;padding-right: 22px">{{currentSelectedDate | date : " MMMM yyyy"}}
+            </button>
+            <a class="item ion-ios7-arrow-right" style="margin: 0px;border-width: 0px" ng-click="nextMonth()">
+                <i class="icon ion-chevron-right"></i>
+            </a>
+        </div>     
+        <br>
+        <button class="button button-stable" style="border: 1px solid grey;margin-left: 43px" ng-click="showSalaryDetails()">
+            {{ showSalarySummary ? "Show Detail" : "Show Summary" }}
+        </button>
+        <br>
+        <br>
+        <div ng-show="showSalarySummary" id="salaryDataTable" style="margin-left: 7px; margin-bottom: 10px"> </div>
+
+        <div ng-show="showSalaryDetailsTable">
+            <span ng-repeat="employee in employees">
+                        <button class="button button-stable" style="border: 1px solid grey"
+                                ng-class=""
+                                ng-click="showSalaryDetailsFor(employee)">{{employee}}
+                        </button>
+            </span>
+            <br>
+            <br>
+            <table ng-if="showSalaryDetailsForEmployee">
+                <tr>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Mode</th>
+                </tr>
+                <tr ng-repeat="detail in showSalaryDetailsForEmployee">
+                    <td>{{detail.amount}}</td>
+                    <td>{{detail.date | date }}</td>
+                    <td>{{detail.mode}}</td>
+                </tr>
+            </table>
+        </div>
+        
+
+    </ion-content>
+
+    <div class="bar bar-footer row no-print" style="padding: 0;margin: 0">
+        <div class="col col-50" style="padding: 0;margin: 1px">
+            <button class="button button-dark button-full" ng-click="cancel()" style="margin: 2px">Cancel</button>
+        </div>
+        <div class="col" style="padding: 0;margin: 1px">
+            <button class="button button-dark button-full" ng-click="save()" style="margin: 2px">Save</button>
+        </div>
+    </div>
+
+</ion-view>

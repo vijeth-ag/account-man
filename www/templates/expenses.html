@@ -1,0 +1,81 @@
+<ion-view>
+    <ion-header-bar align-title="center" class="bar-stable">
+        <h1 class="title">Cauvery Associates</h1>
+        <div class="buttons no-print">
+            <button class="button icon ion-gear-a" ng-click="gotoSettings()"></button>
+        </div>
+    </ion-header-bar>
+    <div class="bar bar-subheader">
+        <button class="button icon ion-printer no-print" ng-click="print()"></button>
+        <h2 class="title" style="text-align: left;margin-left: 55px" ng-click="deleteThisMonthsData()">Expenses</h2>
+        <div style="position: absolute;right:0">
+            <button class="button button-light no-print" style="font-size: 17px" ng-click="gotoTransactions()">Daily Transactions</button>
+            <button class="button button-light no-print" style="font-size: 17px" ng-click="gotoSalary()">Salary</button>
+        </div>
+    </div>
+    <ion-content vertical-scroll class="padding has-header has-subheader">
+        <div class="vertical-divider"></div>
+
+        <ion-list>
+            <div class="row" style="max-width: 250px">
+                <ion-radio ng-model="dateType" ng-click="dateTypeClicked('bySingleDate')" ng-value="'bySingleDate'">Date</ion-radio>
+                <ion-radio ng-model="dateType" ng-click="dateTypeClicked('byDateRange')" ng-value="'byDateRange'">Period</ion-radio>
+            </div>
+        </ion-list>
+        <div ng-show="dateType == 'bySingleDate'">
+            <div class="row">
+                <a class="item ion-ios7-arrow-left" style="margin: 0px;border-width: 0px" ng-click="previousDate()">
+                    <i class="icon ion-chevron-left"></i>
+                </a>
+                <button ng-click="openDatePicker()" style="border: 1px solid grey;border-radius: 0%;padding-left: 22px;padding-right: 22px">{{currentSelectedDate | date}}
+                </button>
+                <a class="item ion-ios7-arrow-right" style="margin: 0px;border-width: 0px" ng-click="nextDate()">
+                    <i class="icon ion-chevron-right"></i>
+                </a>
+            </div>
+            <br>
+            <div class="row" style="margin-bottom: 3px">
+                <button class="no-print" ng-click="addNewExpense()" style="margin: 2px">Add New Expense</button>
+            </div>
+            <div id="expensesDataTable" class="dataTable" style="margin-left: 7px; margin-bottom: 10px">
+            </div>
+
+            <div style="position: absolute;left:51%;top:90%;margin-top:0px"> 
+                <div id="todaysSummaryDataTable" class="dataTable" style="margin-left: 7px; margin-bottom: 10px"> </div>
+            </div>
+        </div>
+        <div ng-show="dateType == 'byDateRange'">
+            <div class="row">
+                <button ng-click="openFromDatePicker()" style="min-width: 121px;border: 1px solid grey;border-radius: 0%;padding-left: 22px;padding-right: 22px">From {{fromDate | date}}
+                </button>
+                <a class="item ion-ios7-arrow-right" style="margin: 0px;border-width: 0px">
+                    -
+                </a>
+                <button ng-click="openToDatePicker()" style="min-width: 121px;border: 1px solid grey;border-radius: 0%;padding-left: 22px;padding-right: 22px">To {{toDate | date}}
+                </button>
+            </div>
+            <br>
+            <div>
+                <button class="no-print" style="margin-left: 15px" ng-click="generateExpensesReport()">Submit</button>
+            </div>
+            <br>
+            <div id="expensesSummaryDataTable" class="dataTable" style="">
+            </div>
+            <br>
+        </div>
+        <div ng-show="dateType == 'bySingleDate'" style="position: absolute;left:51%;top:30%"> 
+            Denominations           
+            <div id="denominationsDataTable" class="dataTable" style="margin-left: 7px; margin-bottom: 0px"> </div>
+            <br>
+            <button style="width: 100px;margin-left: 7px" ng-click="updateDenominations()">Total {{denominationsTotal}}</button>
+        </div>
+    </ion-content>
+    <div ng-show="showFooter" class="bar bar-footer row no-print" style="padding: 0;margin: 0">
+        <div class="col col-50" style="padding: 0;margin: 1px">
+            <button class="button button-dark button-full" ng-click="cancel()" style="margin: 2px">Cancel</button>
+        </div>
+        <div class="col" style="padding: 0;margin: 1px">
+            <button class="button button-dark button-full" ng-click="save()" style="margin: 2px">Save</button>
+        </div>
+    </div>
+</ion-view>
