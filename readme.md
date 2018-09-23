@@ -1,1 +1,1 @@
-A personal Ionic project with Electron distribution 
+An Ionic project with Electron distribution 
