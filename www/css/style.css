@@ -38,3 +38,7 @@ th, td {
     left: 50%;
     height: 100vh;
 }
+
+.show-scroll-bar{
+    overflow-y: scroll !important;
+}

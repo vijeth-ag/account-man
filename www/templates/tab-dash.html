@@ -5,7 +5,7 @@
             <button class="button icon ion-gear-a" ng-click="gotoSettings()"></button>
         </div>
     </ion-header-bar>
-    <div class="bar bar-subheader"> 
+    <div class="bar bar-subheader "> 
         <button class="button icon ion-printer no-print" ng-click="print()"></button>        
 
         <h2 class="title no-print" style="text-align: left;margin-left: 55px" ng-click="deleteTodaysData()">Daily Transactions</h2>
@@ -16,7 +16,7 @@
 
 
     </div>
-    <ion-content class="padding has-header">
+    <ion-content class="padding has-header has-footer show-scroll-bar ">
         <br><br>
         <div class="row">
             <a class="item ion-ios7-arrow-left" style="margin: 0px;border-width: 0px" ng-click="previousDate()">
@@ -34,6 +34,7 @@
         <div class="row no-print" style="margin-bottom: 3px">
             <button ng-click="addRow()" style="margin: 2px">Add Row</button>
             <button ng-click="addColoumn()" style="margin: 2px">Add Coloumn</button>            
+            <button ng-click="deleteRow()" style="margin: 2px">Delete Row</button>     
         </div>  
     
         <div id="dataTable" class="dataTable" style="margin-left: 7px; margin-bottom: 10px"> </div>

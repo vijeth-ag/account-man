@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['ionic-datepicker'])
 
-.controller('DashCtrl', function($scope, $state, Service, ionicDatePicker) {
+.controller('DashCtrl', function($scope, $state, Service, ionicDatePicker, $ionicPopup) {
 
   var db;
 
@@ -91,8 +91,36 @@ angular.module('starter.controllers', ['ionic-datepicker'])
     $scope.data[0].push(newColoumn);
 
     hot.loadData($scope.data);
-
   }
+
+  var afterSelectionCallback = function(row, col){
+    console.log('afterSelectionCallback',row);
+    $scope.selectedRow = row;
+  }
+
+  Handsontable.hooks.add('afterSelection', afterSelectionCallback, hot);
+
+  $scope.deleteRow = function(){
+
+       var confirmPopup = $ionicPopup.confirm({
+           title: 'Delete Row',
+           template: 'Are you sure?'
+        });
+
+        confirmPopup.then(function(res) {
+           if(res) {
+              
+              $scope.data.splice($scope.selectedRow, 1);
+              $scope.save();
+
+           } else {
+              // do nothing
+           }
+        })    
+
+
+
+}
 
   $scope.setBlankTableData = function(){
         $scope.data = [
